@@ -9,7 +9,7 @@
             <div class="col-lg-6">
                 <h3>Consultar por id</h3>
                 <!--Consultar por Id. llama el metodo getallbyid()-->
-                <input type="text" id="txtid"  class="form-control" placeholder="Id"> <br>
+                <input type="text" id="txtid" class="form-control" placeholder="Id"> <br>
                 <button class="btn btn-primary" @click="getAllById()">Buscar por Id</button>
             </div>
 
@@ -53,7 +53,7 @@
                 <h3>Eliminar por id</h3>
                 <!--operacion para consultar todos. llama el metodo getallbyid()-->
                 <input type="text" id="txtid_eli" class="form-control" placeholder="Id "> <br>
-                <button class="btn btn-danger" onclick="delete_contact()">Eliminar un contacto</button>
+                <button class="btn btn-danger" @click="delete_contact()">Eliminar un contacto</button>
             </div>
             <div class="col-lg-6">
 
@@ -65,17 +65,26 @@
 
 <script>
 import axios from "axios";
-
-
 export default {
     name: 'api',
+    data() {
+
+        return {
+
+        }
+    },
 
     methods: {
         getAll() {
             axios.get('http://localhost:3000/getAll')
                 .then(function (response) {
                     console.log(response);
-                    console.log(response.data[0].fullname);
+                    console.log(response.data[length].fullname);
+                    var test = response.data.length
+                    console.log(test)
+                    for (var i = 0;i < test; i++) {
+                        alert(response.data[i].fullname)
+                    }
 
                 })
                 .catch(function (error) {
@@ -136,10 +145,10 @@ export default {
 
         ///////////////////funcion para actualizar
         , update() {
-            txtnombre = document.getElementById("txtnombre_act").value;
-            txttel = document.getElementById("txttel_act").value;
-            txtemail = document.getElementById("txtemail_act").value;
-            id = document.getElementById("txtid_act").value;
+            let txtnombre = document.getElementById("txtnombre_act").value;
+            let txttel = document.getElementById("txttel_act").value;
+            let txtemail = document.getElementById("txtemail_act").value;
+            let id = document.getElementById("txtid_act").value;
             const nuevocontacto = {
                 fullname: txtnombre,
                 phone: txttel,
@@ -161,7 +170,7 @@ export default {
         ///////////////////funcion para eliminar
         , delete_contact() {
 
-            id = document.getElementById("txtid_eli").value;
+            let id = document.getElementById("txtid_eli").value;
 
             axios.delete('http://localhost:3000/delete/' + id)
                 .then(res => {

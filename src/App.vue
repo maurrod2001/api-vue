@@ -61,4 +61,5 @@ nav a.router-link-exact-active {
     background-color: #41b883;
     background-image: -webkit-linear-gradient(90deg,transparent,rgb(64, 196, 130) 50%,transparent,transparent)
 }
+
 </style>
