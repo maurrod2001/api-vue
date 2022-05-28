@@ -11,27 +11,52 @@
             <label class="text-dark" for="floatingInput">email</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+              autocomplete="email">
             <label class="text-dark" for="floatingPassword">Password</label>
           </div>
 
-
-          <button class="w-100 btn btn-lg btn-success" type="submit">Sign in</button>
-          <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
         </form>
+        <button class="w-100 btn btn-lg btn-success " type="submit" @click="getLogin()">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
+        <button class="btn btn-outline-danger" @click="test()">test</button>
+
       </main>
     </div>
 
   </div>
-  <br><br><br><br>
+  <br>
 </template>
 
 <script>
-
+import router from '@/router';
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    getLogin() {
+      axios.get('http://localhost:3000/getLogin')
+        .then(function (response) {
+          console.log(response);
+          console.log(response.data[length].username);
+          var test = response.data.length
+          console.log(test)
+          for (var i = 0; i < test; i++) {
+            alert(response.data[i].username)
+          }
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      router.push("about")
+    },
+    test() {
+      router.push("medic")
+    }
   }
 }
 
@@ -81,5 +106,4 @@ a {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 </style>
