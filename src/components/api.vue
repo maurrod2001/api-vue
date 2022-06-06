@@ -52,8 +52,8 @@
 
 
             <br>
-            <div class="col-lg-12 mt-5">
-                <table class="table  table-dark bg-dark  table-hover table-striped ">
+            <div class="col-lg-12 mt-5 table-responsive-md">
+                <table class="table  table-dark bg-dark table-bordered  table-hover table-striped ">
                     <tr>
                         <th>numero</th>
                         <th>nombre</th>
@@ -71,7 +71,7 @@
 
                     <tbody>
                         <tr v-for="(pacient, index) in pacients" :key="index">
-                            <td id="test+pacient">{{ pacient.no }}</td>
+                            <td> {{ pacient.no }} </td>
                             <td> {{ pacient.name }} </td>
                             <td> {{ pacient.lastname }} </td>
                             <td> {{ pacient.gender }} </td>
@@ -80,7 +80,7 @@
                             <td> {{ pacient.phone }} </td>
                             <td> {{ pacient.medicaments }} </td>
                             <td> {{ pacient.alergy }} </td>
-                             <td><button class="btn btn-danger" @click="delete_contact(index)">delete</button> </td>
+                            <td><button class="btn btn-danger" @click="delete_contact(pacient.no)">delete</button> </td>
 
 
                         </tr>
@@ -96,7 +96,6 @@
         </div>
 
 
-        <button type="submit" class="btn btn-danger" >delete</button>
 
     </div>
 </template>
@@ -246,16 +245,16 @@ export default {
 
 
         ///////////////////funcion para eliminar
-        , delete_contact(index  ) {
+        , delete_contact(no) {
 
-            let id = document.getElementById("txtid_eli").value;
+            // let no = document.getElementById("txtid_eli").value;
 
-            axios.delete('http://localhost:3000/pacient/' + index)
+            axios.delete('http://localhost:3000/pacient/' + no)
                 .then(res => {
                     console.log(res.data)
 
                     alert(" paciente borrado.")
-
+                    console.log(this.getAll())
 
 
                 })
