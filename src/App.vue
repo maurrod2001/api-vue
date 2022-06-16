@@ -23,7 +23,7 @@
       </div>
     </div>
   </nav>
-  <router-view />
+  <router-view/>
   <br>
   <footer class="mt-auto py-1 bg-light">
     <span class="text-muted">aplicacccion de prueba de vue con axios</span>

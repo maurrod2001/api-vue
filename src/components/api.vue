@@ -52,8 +52,8 @@
 
 
             <br>
-            <div class="col-lg-12 mt-5 table-responsive-md">
-                <table class="table  table-dark bg-dark table-bordered  table-hover table-striped ">
+            <div class="col-lg-12 mt-5 table-responsive-xxl">
+                <table class="table  table-dark bg-dark table-bordered  table-hover table-striped">
                     <tr>
                         <th>numero</th>
                         <th>nombre</th>
@@ -156,6 +156,7 @@ export default {
                     console.log(response.data[0].name);
                     alert(response.data[0].name)
                     this.pacients = response.data
+                    
 
 
                 })
@@ -270,4 +271,5 @@ export default {
 
 
 <style scoped>
+
 </style>

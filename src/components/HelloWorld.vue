@@ -7,7 +7,7 @@
           <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
           <div class="form-floating">
-            <input type="email" class="form-control text-danger" id="floatingInput" placeholder="name@example.com">
+            <input type="text" class="form-control text-danger" id="floatingInput" placeholder="name@example.com">
             <label class="text-dark" for="floatingInput">email</label>
           </div>
           <div class="form-floating">
@@ -19,7 +19,7 @@
         </form>
         <button class="w-100 btn btn-lg btn-success " type="submit" @click="getLogin()">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
-        <button class="btn btn-outline-danger" @click="test()">test</button>
+
 
       </main>
     </div>
@@ -38,24 +38,22 @@ export default {
   },
   methods: {
     getLogin() {
-      axios.get('http://localhost:3000/getLogin')
-        .then(function (response) {
-          console.log(response);
-          console.log(response.data[length].username);
-          var test = response.data.length
-          console.log(test)
-          for (var i = 0; i < test; i++) {
-            alert(response.data[i].username)
+      let no = document.getElementById("floatingInput").value;
+      let diff = document.getElementById("floatingPassword").value
+      axios.get('http://localhost:3000/login/'+ no)
+        .then((response) => {
+          const pass = response.data[0].password
+          console.log(pass);
+          if (diff == pass) {
+            router.push("medic")
+          } else {
+            alert("contraseña incorrecta")
           }
-
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
-      router.push("about")
-    },
-    test() {
-      router.push("medic")
+
     }
   }
 }
